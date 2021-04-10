@@ -1,0 +1,455 @@
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap';
+@import 'https://malscraper.azurewebsites.net/covers/anime/myuwi/presets/dataimagelinkbefore';
+@import 'https://malscraper.azurewebsites.net/covers/manga/myuwi/presets/dataimagelinkbefore';
+
+:root {
+    --blue: #3db4f2;
+
+    --body: #edf1f5;
+    --light: #fafafa;
+
+    --gray: #5c728a;
+    --gray-light: #9299a1;
+
+    --grid-item-width: 150px;
+    --grid-item-height: 215px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:not(.fa) {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+body {
+    font-size: 13px !important;
+    background-color: var(--body);
+    position: relative;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none !important;
+    outline: none !important;
+    color: var(--blue);
+}
+
+/* Disable useless elements */
+.header,
+.header .header-title,
+.cover-block,
+#list-container div[style*='padding-top'],
+table.list-table tbody:first-child {
+    display: none !important;
+}
+
+/* Make stuff transparent and remove borders */
+#list-container,
+.status-menu-container,
+.list-table {
+    border: 0;
+    background: transparent;
+}
+
+#list-container {
+    margin: 200px auto 0;
+    max-width: 1360px;
+    width: 100%;
+}
+
+/* Side Container with lists and search */
+.status-menu-container {
+    height: calc(100% - 200px);
+    position: absolute !important;
+    top: 0;
+    left: 20px;
+    width: 180px;
+}
+
+.status-menu-container .status-menu {
+    display: flex !important;
+    flex-flow: column nowrap;
+    top: 0;
+    position: sticky !important;
+    margin: 0;
+    width: 180px;
+    padding-top: 20px;
+}
+
+/* Side button */
+.status-menu-container .status-menu .status-button {
+    display: flex;
+    color: var(--gray-light);
+    transition: background ease-in-out 200ms, color ease-in-out 200ms;
+
+    display: flex;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+/* Side button active */
+.status-menu-container .status-menu .status-button.on {
+    background-color: rgba(250, 250, 250, 0.8);
+    border-radius: 3px;
+    color: var(--gray) !important;
+    font-weight: 500;
+}
+
+/* Lists text */
+.status-menu-container .status-menu .status-button.all_anime {
+    margin-top: 25px;
+}
+
+.status-menu-container .status-menu .status-button.all_anime::before {
+    content: 'Lists';
+    font-size: 13px !important;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    color: var(--gray-light);
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+/* Disable underlines */
+.status-menu-container .status-menu .status-button::after {
+    display: none;
+}
+
+/* Search */
+.status-menu-container .status-menu .search-container {
+    display: flex;
+    position: unset;
+    /* Search first */
+    order: -1;
+    margin-bottom: 20px;
+}
+
+.status-menu-container .search-container #search-box {
+    width: 180px !important;
+    margin: 0;
+    height: 40px;
+    overflow: visible;
+    position: relative;
+}
+
+.status-menu-container .search-container #search-box:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 17.5px;
+    background-image: url(https://dl.dropbox.com/s/gb6lo8p695zt63e/search-1.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px 12px;
+}
+
+.status-menu-container .search-container #search-box input {
+    width: 180px !important;
+    padding: 0 15px 0 35px;
+    height: 40px;
+    font-size: 14px !important;
+    color: var(--gray-light);
+    border: 0;
+    outline: 0 !important;
+    background: transparent;
+
+    border-radius: 4px;
+    background-color: #fafafa;
+
+    transition: box-shadow ease-in-out 200ms, color ease-in-out 200ms;
+}
+
+.status-menu-container .search-container #search-box input:focus {
+    box-shadow: 0 1px 10px 0 rgba(49, 54, 68, 0.15);
+    color: var(--gray);
+}
+
+/* Disable original magnifying glass */
+.status-menu-container .search-container #search-button {
+    display: none;
+}
+
+/* List Block */
+.list-block {
+    margin: 0;
+}
+
+.list-unit {
+    max-width: 1360px;
+    width: 100%;
+
+    padding: 20px 20px 20px 240px;
+}
+
+/* List Status (e.g. All Anime, Completed) */
+.list-unit .list-status-title {
+    background: transparent;
+    /* display: none; */
+}
+
+/* Replaced with .list-status-title::before */
+.list-unit .list-status-title .text {
+    display: none;
+}
+
+.list-unit .list-status-title::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    color: var(--gray);
+    font-size: 18px;
+}
+
+body[data-work='anime'] .list-unit.all_anime .list-status-title::before {
+    content: 'All Anime';
+}
+body[data-work='anime'] .list-unit.watching .list-status-title::before {
+    content: 'Currently Watching';
+}
+body[data-work='anime'] .list-unit.completed .list-status-title::before {
+    content: 'Completed';
+}
+body[data-work='anime'] .list-unit.onhold .list-status-title::before {
+    content: 'On Hold';
+}
+body[data-work='anime'] .list-unit.dropped .list-status-title::before {
+    content: 'Dropped';
+}
+body[data-work='anime'] .list-unit.plantowatch .list-status-title::before {
+    content: 'Plan to watch';
+}
+
+body[data-work='manga'] .list-unit.all_anime .list-status-title::before {
+    content: 'All Manga';
+}
+body[data-work='manga'] .list-unit.reading .list-status-title::before {
+    content: 'Currently Reading';
+}
+body[data-work='manga'] .list-unit.completed .list-status-title::before {
+    content: 'Completed';
+}
+body[data-work='manga'] .list-unit.onhold .list-status-title::before {
+    content: 'On Hold';
+}
+body[data-work='manga'] .list-unit.dropped .list-status-title::before {
+    content: 'Dropped';
+}
+body[data-work='manga'] .list-unit.plantoread .list-status-title::before {
+    content: 'Plan to read';
+}
+
+/* List */
+table.list-table {
+    margin: auto;
+
+    display: grid;
+    position: relative;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, 150px);
+    justify-content: start;
+}
+
+.list-item {
+    display: flex;
+    flex-flow: column nowrap;
+
+    height: var(--grid-item-height);
+    width: var(--grid-item-width);
+
+    color: #fff;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 3px;
+    box-shadow: 0 2px 20px rgba(49, 54, 68, 0.2);
+}
+
+.list-table-data {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 0 auto;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.list-table .list-table-data .data {
+    border: 0;
+    padding: 0;
+}
+
+/* Cover Image */
+.data.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.data.image a {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.data.image a:before {
+    content: '';
+    z-index: 100;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center !important;
+}
+
+.data.image a img {
+    z-index: 90;
+}
+
+.data.image a:before,
+.data.image a img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--grid-item-height) !important;
+    width: var(--grid-item-width) !important;
+}
+
+/* Title */
+.list-table .list-table-data .data.title {
+    display: flex;
+    z-index: 110;
+    width: 100%;
+    padding: 12px;
+    padding-bottom: 35px;
+    background: rgba(31, 38, 49, 0.8);
+}
+
+/* Title Link */
+.list-table .list-table-data .data.title a.link.sort {
+    color: #fff;
+    transition: color ease-in-out 200ms;
+    font-weight: 400;
+    font-size: 13px !important;
+}
+
+.list-table .list-table-data .data.title a.link.sort:hover {
+    color: var(--blue);
+}
+
+/* Watch PV Icon */
+.list-table .list-table-data .data.title a.icon-watch {
+    display: none;
+}
+
+/* Rewatching etc. */
+.list-table .list-table-data .data.title .rewatching,
+.list-table .list-table-data .data.title .rereading,
+.list-table .list-table-data .data.title .content-status {
+    display: none;
+}
+
+.list-table .list-table-data .data.title .add-edit-more {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 0;
+    margin: 0;
+}
+
+/* More */
+.list-table .list-table-data .data.title .add-edit-more .more {
+    display: none;
+}
+
+/* Edit */
+.list-table .list-table-data .data.title .add-edit-more .edit {
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    border-radius: 3px;
+    background-color: var(--blue);
+    padding: 4px 5px;
+    font-size: 12px;
+    line-height: 12px;
+
+    transition: opacity ease-in-out 200ms;
+    opacity: 0;
+}
+
+.list-table .list-table-data:hover .data.title .add-edit-more .edit {
+    opacity: 1;
+}
+
+.list-table .list-table-data .data.title .add-edit-more .edit a {
+    font-size: 12px;
+    color: #fff;
+}
+
+/* Episode/Chapter Count and Score */
+.list-table .list-table-data .data.progress,
+.list-table .list-table-data .data.chapter,
+.list-table .list-table-data .data.score {
+    position: absolute;
+    bottom: 12px;
+    z-index: 110;
+    color: var(--blue);
+}
+
+/* Episode/Chapter Count */
+.list-table .list-table-data .data.progress,
+.list-table .list-table-data .data.chapter {
+    left: 12px;
+    text-align: left !important;
+}
+
+/* Input */
+.list-table .list-table-data .data.progress input,
+.list-table .list-table-data .data.chapter input {
+    border-radius: 2px;
+    border: 0;
+    outline: 0;
+    margin-right: 2px;
+    padding: 2px 4px;
+    font-size: 12px;
+}
+
+/* Plus Icon */
+.list-table .list-table-data .data.progress .icon-add-episode,
+.list-table .list-table-data .data.chapter .icon-add-chapter {
+    margin-left: 4px;
+}
+
+/* Score */
+.list-table .list-table-data .data.score {
+    position: absolute;
+    right: 12px;
+    text-align: right !important;
+}
+
+.list-table .list-table-data .data.score .link {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+/* Select */
+.list-table .list-table-data .data.score select {
+    border-radius: 2px;
+    border: 0;
+    outline: 0;
+    margin-right: 2px;
+    padding: 2px 4px;
+    font-size: 12px;
+}
