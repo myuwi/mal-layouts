@@ -408,6 +408,12 @@ table.list-table {
     color: var(--blue);
 }
 
+.list-table .list-table-data .data.progress a,
+.list-table .list-table-data .data.chapter a,
+.list-table .list-table-data .data.score a {
+    color: var(--blue);
+}
+
 /* Episode/Chapter Count */
 .list-table .list-table-data .data.progress,
 .list-table .list-table-data .data.chapter {
