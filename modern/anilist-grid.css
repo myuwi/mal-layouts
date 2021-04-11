@@ -5,6 +5,8 @@
 :root {
     --blue: #3db4f2;
 
+    --accent: var(--blue);
+
     --body: #edf1f5;
     --light: #fafafa;
 
@@ -29,6 +31,10 @@ body {
     position: relative;
 }
 
+/* body[data-owner-name]::before {
+    content: attr(data-owner-name) ' ';
+} */
+
 a,
 a:link,
 a:visited,
@@ -36,13 +42,12 @@ a:hover,
 a:active {
     text-decoration: none !important;
     outline: none !important;
-    color: var(--blue);
+    color: var(--accent);
 }
 
 /* Disable useless elements */
 .header,
 .header .header-title,
-.cover-block,
 #list-container div[style*='padding-top'],
 table.list-table tbody:first-child {
     display: none !important;
@@ -60,6 +65,14 @@ table.list-table tbody:first-child {
     margin: 200px auto 0;
     max-width: 1360px;
     width: 100%;
+}
+
+.cover-block {
+    height: 330px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 /* Side Container with lists and search */
@@ -197,7 +210,7 @@ table.list-table tbody:first-child {
     /* display: none; */
 }
 
-/* Replaced with .list-status-title::before */
+/* Replaced with .list-status-title::before because this is in all caps for some reason */
 .list-unit .list-status-title .text {
     display: none;
 }
@@ -345,7 +358,7 @@ table.list-table {
 }
 
 .list-table .list-table-data .data.title a.link.sort:hover {
-    color: var(--blue);
+    color: var(--accent);
 }
 
 /* Watch PV Icon */
@@ -380,7 +393,7 @@ table.list-table {
     top: 6px;
     right: 5px;
     border-radius: 3px;
-    background-color: var(--blue);
+    background-color: var(--accent);
     padding: 4px 5px;
     font-size: 12px;
     line-height: 12px;
@@ -405,13 +418,13 @@ table.list-table {
     position: absolute;
     bottom: 12px;
     z-index: 110;
-    color: var(--blue);
+    color: var(--accent);
 }
 
 .list-table .list-table-data .data.progress a,
 .list-table .list-table-data .data.chapter a,
 .list-table .list-table-data .data.score a {
-    color: var(--blue);
+    color: var(--accent);
 }
 
 /* Episode/Chapter Count */
