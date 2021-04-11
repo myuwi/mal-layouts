@@ -62,22 +62,115 @@ table.list-table tbody:first-child {
 }
 
 #list-container {
-    margin: 375px auto 0;
-    max-width: 1520px;
-    padding: 0 100px;
-    width: 100%;
-
     display: grid;
     grid-template-columns: 180px auto;
     grid-column-gap: 40px;
+
+    margin: 0 auto;
+    padding: 375px 100px 0;
+
+    max-width: 1520px;
+    width: 100%;
+
+    position: static;
 }
 
+#list-container::before {
+    content: 'Log in to see list controls';
+    height: 45px;
+    width: 100%;
+    display: flex;
+    background: var(--light);
+    position: absolute;
+    top: 330px;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--gray);
+}
+
+/* Cover Image */
 .cover-block {
     height: 330px;
     position: absolute;
+
+    width: 100%;
+    overflow: hidden;
+
     top: 0;
     left: 0;
-    right: 0;
+}
+
+.cover-block .image-container {
+    display: block;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cover-block .image-container img {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    min-height: 330px;
+    height: 100%;
+}
+
+/* List menu float (Cover toolbar) */
+.list-menu-float {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+
+    background: var(--light);
+
+    position: absolute;
+    top: 330px;
+    left: 0;
+    width: 100%;
+    border: 0;
+    z-index: 200;
+}
+
+/* Disable Profile Icon */
+.list-menu-float .icon-menu.profile,
+.list-menu-float .icon-menu.setting,
+.list-menu-float .icon-menu.export,
+.list-menu-float form {
+    display: none;
+}
+
+.list-menu-float .icon-menu {
+    width: unset !important;
+    background: transparent !important;
+    height: unset !important;
+}
+
+.list-menu-float .icon-menu svg {
+    display: none;
+}
+
+.list-menu-float .icon-menu .text {
+    width: unset !important;
+    opacity: 1;
+    position: static;
+    color: var(--gray);
+
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+    margin: 0 12px;
+    padding: 15px;
+}
+
+/* Link Hover */
+.list-menu-float .icon-menu .text:hover,
+/* Highlight Anime or Manga */
+body.anime  .list-menu-float .icon-menu.anime-list .text,
+body.manga  .list-menu-float .icon-menu.manga-list .text {
+    color: var(--accent);
 }
 
 /* Side Container with lists and search */
@@ -236,42 +329,72 @@ table.list-table tbody:first-child {
     font-size: 18px;
 }
 
-body[data-work='anime'] .list-unit.all_anime .list-status-title::before {
+body.anime .list-unit.all_anime .list-status-title::before {
     content: 'All Anime';
 }
-body[data-work='anime'] .list-unit.watching .list-status-title::before {
+body.anime .list-unit.watching .list-status-title::before {
     content: 'Currently Watching';
 }
-body[data-work='anime'] .list-unit.completed .list-status-title::before {
+body.anime .list-unit.completed .list-status-title::before {
     content: 'Completed';
 }
-body[data-work='anime'] .list-unit.onhold .list-status-title::before {
+body.anime .list-unit.onhold .list-status-title::before {
     content: 'On Hold';
 }
-body[data-work='anime'] .list-unit.dropped .list-status-title::before {
+body.anime .list-unit.dropped .list-status-title::before {
     content: 'Dropped';
 }
-body[data-work='anime'] .list-unit.plantowatch .list-status-title::before {
+body.anime .list-unit.plantowatch .list-status-title::before {
     content: 'Plan to watch';
 }
 
-body[data-work='manga'] .list-unit.all_anime .list-status-title::before {
+body.manga .list-unit.all_anime .list-status-title::before {
     content: 'All Manga';
 }
-body[data-work='manga'] .list-unit.reading .list-status-title::before {
+body.manga .list-unit.reading .list-status-title::before {
     content: 'Currently Reading';
 }
-body[data-work='manga'] .list-unit.completed .list-status-title::before {
+body.manga .list-unit.completed .list-status-title::before {
     content: 'Completed';
 }
-body[data-work='manga'] .list-unit.onhold .list-status-title::before {
+body.manga .list-unit.onhold .list-status-title::before {
     content: 'On Hold';
 }
-body[data-work='manga'] .list-unit.dropped .list-status-title::before {
+body.manga .list-unit.dropped .list-status-title::before {
     content: 'Dropped';
 }
-body[data-work='manga'] .list-unit.plantoread .list-status-title::before {
+body.manga .list-unit.plantoread .list-status-title::before {
     content: 'Plan to read';
+}
+
+/* Stats */
+.list-unit .list-status-title .stats #show-stats-button {
+    display: none;
+}
+/* Advanced Filter */
+.list-unit .list-status-title .stats {
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+
+.list-unit .list-status-title .stats #advanced-options-button {
+    font-size: 0;
+    line-height: 0;
+}
+
+.list-unit .list-status-title .stats #advanced-options-button i.fa {
+    display: flex;
+    font-size: 18px;
+    line-height: 1em;
+    padding: 10px 13px;
+    transition: color ease-in-out 200ms;
+    color: var(--gray);
+    background: var(--light);
+    border-radius: 4px;
+}
+.list-unit .list-status-title .stats #advanced-options-button i.fa:hover {
+    color: var(--accent);
 }
 
 /* List */
