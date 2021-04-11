@@ -62,9 +62,14 @@ table.list-table tbody:first-child {
 }
 
 #list-container {
-    margin: 200px auto 0;
-    max-width: 1360px;
+    margin: 375px auto 0;
+    max-width: 1520px;
+    padding: 0 100px;
     width: 100%;
+
+    display: grid;
+    grid-template-columns: 180px auto;
+    grid-column-gap: 40px;
 }
 
 .cover-block {
@@ -78,7 +83,7 @@ table.list-table tbody:first-child {
 /* Side Container with lists and search */
 .status-menu-container {
     height: calc(100% - 200px);
-    position: absolute !important;
+    position: static !important;
     top: 0;
     left: 20px;
     width: 180px;
@@ -91,7 +96,7 @@ table.list-table tbody:first-child {
     position: sticky !important;
     margin: 0;
     width: 180px;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 /* Side button */
@@ -164,6 +169,13 @@ table.list-table tbody:first-child {
     width: 12px;
     height: 12px;
     background-size: 12px 12px;
+
+    transition: opacity ease-in-out 200ms;
+    opacity: 0.5;
+}
+
+.status-menu-container .search-container #search-box:focus-within:before {
+    opacity: 1;
 }
 
 .status-menu-container .search-container #search-box input {
@@ -194,20 +206,24 @@ table.list-table tbody:first-child {
 
 /* List Block */
 .list-block {
-    margin: 0;
+    margin: 40px 0 0 !important;
 }
 
 .list-unit {
-    max-width: 1360px;
     width: 100%;
 
-    padding: 20px 20px 20px 240px;
+    /* padding: 40px 20px 20px 240px; */
 }
 
 /* List Status (e.g. All Anime, Completed) */
 .list-unit .list-status-title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
     background: transparent;
-    /* display: none; */
+    height: 60px;
+    width: auto;
 }
 
 /* Replaced with .list-status-title::before because this is in all caps for some reason */
@@ -216,10 +232,6 @@ table.list-table tbody:first-child {
 }
 
 .list-unit .list-status-title::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-
     color: var(--gray);
     font-size: 18px;
 }
@@ -264,8 +276,6 @@ body[data-work='manga'] .list-unit.plantoread .list-status-title::before {
 
 /* List */
 table.list-table {
-    margin: auto;
-
     display: grid;
     position: relative;
     grid-gap: 30px;
