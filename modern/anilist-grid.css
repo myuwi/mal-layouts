@@ -71,9 +71,10 @@ table.list-table tbody:first-child {
     left: 0;
     right: 0;
     width: 100%;
-    grid-template-columns: 1fr 525px 525px 1fr;
+    grid-template-columns: 1fr clamp(1px, 50%, 525px) clamp(1px, 50%, 525px) 1fr;
     display: grid;
     align-items: center;
+    padding: 0 50px;
 }
 
 .header:hover {
