@@ -46,8 +46,6 @@ a:active {
 }
 
 /* Disable useless elements */
-.header,
-.header .header-title,
 #list-container div[style*='padding-top'],
 table.list-table tbody:first-child {
     display: none !important;
@@ -59,6 +57,43 @@ table.list-table tbody:first-child {
 .list-table {
     border: 0;
     background: transparent;
+}
+
+.header {
+    height: 75px;
+    background: rgba(35, 38, 67, 0.5);
+    margin: 0;
+    transition: background ease 800ms;
+    z-index: 200;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    grid-template-columns: 1fr 525px 525px 1fr;
+    display: grid;
+    align-items: center;
+}
+
+.header:hover {
+    background: #2b2d42;
+}
+
+.header-menu {
+    position: static !important;
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+a.header-title {
+    position: static !important;
+    grid-column-start: 2;
+    grid-row-start: 1;
+
+    background-size: auto 28px !important;
+    height: 28px !important;
+    width: 170px !important;
 }
 
 #list-container {
