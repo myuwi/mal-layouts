@@ -61,7 +61,7 @@ table.list-table tbody:first-child {
 
 .header {
     height: 75px;
-    background: rgba(35, 38, 67, 0.5);
+    background: hsla(222, 29%, 20%, 0.5);
     margin: 0;
     transition: background ease 800ms;
     z-index: 200;
@@ -78,7 +78,7 @@ table.list-table tbody:first-child {
 }
 
 .header:hover {
-    background: #2b2d42;
+    background: #2e51a2;
 }
 
 .header-menu {
@@ -94,7 +94,8 @@ a.header-title {
 
     background-size: auto 28px !important;
     height: 28px !important;
-    width: 170px !important;
+    width: 64px !important;
+    background-image: url('https://myuwi.s-ul.eu/2DMLH9XA') !important;
 }
 
 #list-container {
